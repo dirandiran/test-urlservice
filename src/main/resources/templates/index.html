@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<head th:replace="fragments/head :: head"></head>
+<body>
+    <fieldset>
+        <legend align="center">Short link generator service</legend>
+            <form action="/generateUrl" method="post" accept-charset="utf-8">
+                 <input type="text" id="longurl" th:name="longurl" placeholder="введите Url..."/><br>
+                 <button type="button" id="generate" name="generate">Сгенерировать линк</button><br>
+                <span id="result">
+
+                </span>
+            </form>
+    </fieldset>
+    <button type="button" name="showuserlink" id="showuserlink">показать мой линк</button> <br>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <title>ShortUrlGeneratorService</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var ip = '';
+        $(document).ready(function (){
+            $('#generate').click(function () {
+                //$.getJSON('https://json.geoiplookup.io/api?callback=?', function(data) {
+                    //$.each(data, function(key, val) {
+                       // if(key == 'ip'){
+                           //window.ip = val;
+                           //console.log(window.ip);
+                       // }
+                    //});
+               // });
+               // console.log(window.ip);
+                var longurl = $('#longurl').val();
+                var jsonStringVisitor = JSON.stringify({
+                     uuid : '',
+                     longurl : longurl,
+                     shorturl : ''
+                });
+                $.ajax({
+                    type: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    url: '/generateUrl',
+                    contentType: "application/json; charset=utf-8",
+                    data: jsonStringVisitor,
+                    async: false,
+                    cache: false,
+                    processData:false,
+                    success: function (result) {
+                        var shorturl = $('#result').val();
+                            shorturl = '' + '<a href = "http://localhost:9998/link/' + '{' + result.shorturl + '}' + '">' + 'localhost:9998/link/' + result.shorturl + '</a>';
+                            $('#result').html(shorturl);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+</html>

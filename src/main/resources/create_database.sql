@@ -1,0 +1,6 @@
+create table "VISITOR" (
+  id BIGSERIAL NOT NULL,
+  uuid  VARCHAR(100) NOT NULL UNIQUE,
+  url VARCHAR(50) NOT NULL,
+  shorturl VARCHAR(50) NOT NULL UNIQUE
+)
